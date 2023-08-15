@@ -6,6 +6,10 @@ execute:
   warning: false
 ---
 
+```{r}
+library(tidyverse)
+```
+
 ## Making and indexing data in R
 
 ### Vectors
@@ -171,4 +175,39 @@ class(ttest_example)
 # how to find the p-value by using the name of the list within the hypothesis test
 ttest_example$p.value
 # mean size for trees in site a is greater than the mean size in site b (....my statistical summary, `r ttest_example$p.value`)
+```
+
+## Data Frame
+
+```{r}
+# make a data frame
+fruit <- data.frame(type = c("apple", "banana", "peach"),
+                     mass = c(130, 195, 150))
+# what is the class of the data frame
+class(fruit)
+
+fruit
+# value in row 3 column 2
+fruit[3,2]
+```
+
+```{r}
+# ways to pull data
+purrr::pluck(fruit, "type", 2)
+
+fruit$type[2]
+
+```
+
+```{r}
+# pulls starships column from starwars dataset
+starwars$starships
+# get vector of 1st row values in starships
+starwars$starships[[1]]
+# get second value in vector of row 1
+starwars$starships[[1]][2]
+
+# OR
+
+purrr::pluck(starwars, "starships", 1, 2)
 ```
