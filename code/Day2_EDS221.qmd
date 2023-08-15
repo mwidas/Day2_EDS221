@@ -2,25 +2,108 @@
 title: "Day2_EDS221"
 format: html
 editor: visual
+execute: 
+  warning: false
 ---
 
-## Quarto
+## Making and indexing data in R
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+### Vectors
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Making Vectors
 
 ```{r}
-1 + 1
-```
+# make a vector using concatanate
+dogs <- c("teddy", "khora", "waffle", "banjo", "tallie")
+# check class of dogs
+typeof(dogs)
+class(dogs)
 
-You can add options to executable code like this
+```
 
 ```{r}
-#| echo: false
-2 * 2
+# a vector can only have 1 type of data so it will combine to the largest common data type
+my_breakfast <- c("waffles", 2, TRUE, "coffee")
+
+typeof(my_breakfast)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+```{r}
+weights <- c(50, 60, 25, 35, 55)
+# values are stored as doubles
+typeof(weights)
+# overarching categary my differ from how values are stored double is in a category of numeric
+class(weights)
+```
+
+```{r}
+weights_integer <- c(50L, 60L, 25L, 35L, 55L)
+
+typeof(weights_integer)
+```
+
+```{r}
+# asking a question about variable class aka is weights_integer a numeric
+is.numeric(weights_integer)
+```
+
+```{r}
+zipcodes <- c(93105, 93514, 93101, 93401)
+
+class(zipcodes)
+# use as. family of functions to recast data classes
+zipcodes_character <- as.character(zipcodes)
+```
+
+### Create a vector with named elements
+
+```{r}
+# each of these things is an element, and the "" is the value of the element
+dog_food <- c(teddy = "purina", khora ="alpo", waffle = "fancyfeast", banjo = "blue diamond", tallie = "farmer's dog")
+# we assigned an order but did not change the vector that we are saving
+test <- c(cat = 4, dog = 10, elephant = 11)
+class(test)
+```
+
+```{r}
+# return the value of the 2nd vector
+dog_food[2]
+# R uses 1-index
+#Python and javascript uses 0-indexing
+#another way to call a named vector
+dog_food["khora"]
+```
+
+### Access ranges of values in a vector
+
+Use: to refer to a range (low : high)
+
+```{r}
+trees <- c("ponderosa", "lodgepole", "jeffrey", "sugar", "bristlecone")
+# what is the vector at position 3
+trees[3]
+# what are the vectors at position 3, 4, 5
+trees[3:5]
+```
+
+### Warm-up for for loops
+
+```{r}
+# making an indexing helper
+i <- 3
+# returns trees 4th position vector
+trees[i]
+```
+
+```{r}
+# same thing as seq from = 1, to = 3
+i <- seq(1:3)
+# call back the sequence of i which is from = 1, to = 3
+trees[i]
+```
+
+```{r}
+# re-assigned position 3 so it is no longer "jeffrey"
+trees[3] <- "oak"
+trees
+```
